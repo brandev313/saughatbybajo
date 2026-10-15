@@ -1,4 +1,4 @@
-:root{--cream:#FFF9E9;--coral:#FF795F;--sage:#D7DFAE;--ink:#173F2C;--white:#fff;
+:root{--cream:#FFF8EC;--coral:#C5A88B;--sage:#D7DFAE;--ink:#3B2A22; --border-light: #7A3C30;--white:#fff; --border-color:#7A3C30;
 --s1:5px;--s2:9px;--s3:13px;--s4:18px;--s5:34px;--pill:100px;--r:10px;
 --serif:Georgia,'Times New Roman',serif;--sans:'Avenir Next','DM Sans',Avenir,'Segoe UI',system-ui,sans-serif;--ease:cubic-bezier(.22,.76,.2,1)}
 *{box-sizing:border-box;margin:0}
@@ -15,7 +15,7 @@ p+p{margin-top:var(--s3)}
 .lead{font-size:18px;max-width:52ch;margin-top:var(--s4)}
 .fine{font-size:13px;opacity:.8;margin-top:var(--s4);max-width:70ch}
 .topbar{background:var(--ink);color:var(--cream);text-align:center;font-size:12px;font-weight:800;letter-spacing:.96px;text-transform:uppercase;padding:var(--s2) var(--s3)}
-.nav{position:sticky;top:0;z-index:20;display:flex;align-items:center;justify-content:space-between;padding:var(--s3) var(--s5);background:var(--cream);border-bottom:1px solid var(--ink)}
+.nav{position:sticky;top:0;z-index:20;display:flex;align-items:center;justify-content:space-between;padding:var(--s3) var(--s5);background:var(--cream);border-bottom:1px solid var(--border-light)}
 .brand{font:400 24px var(--serif);text-decoration:none}.brand em{font-size:15px}
 .nav nav{display:flex;gap:var(--s5);align-items:center}
 .nav nav a:not(.btn){text-decoration:none;font-size:13px;font-weight:800;letter-spacing:.96px;text-transform:uppercase;transition:opacity .2s}
@@ -29,8 +29,8 @@ p+p{margin-top:var(--s3)}
 .btn-dark{margin-top:var(--s4)}
 .actions{display:flex;gap:var(--s3);flex-wrap:wrap;margin-top:var(--s5)}
 /* grid system: 1px ink lines, full-bleed */
-.grid{display:grid;border-bottom:1px solid var(--ink)}
-.grid>.cell{padding:var(--s5);border-right:1px solid var(--ink)}
+.grid{display:grid;border-bottom:1px solid var(--border-color)}
+.grid>.cell{padding:var(--s5);border-right:1px solid var(--border-color)}
 .grid>.cell:last-child{border-right:0}
 .hero,.product,.story,.order{grid-template-columns:1fr 1fr}
 .cols3{grid-template-columns:repeat(3,1fr);border-top:1px solid var(--ink);margin-top:var(--s5)}
@@ -92,3 +92,25 @@ details p{padding-bottom:var(--s4);max-width:60ch}
 .flip .prod-art{order:-1}.section{padding-left:var(--s4);padding-right:var(--s4)}
 .foot{grid-template-columns:1fr}}
 @media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}.reveal{opacity:1;transform:none}}
+
+/* Custom Hero Section Borders */
+.hero {
+  border-bottom-color: #7A3C30; /* Changes the bottom border of the hero */
+}
+.hero > .cell {
+  border-right-color: #7A3C30;  /* Changes the vertical divider inside the hero */
+}
+
+/* Custom Muted Pistachio WhatsApp Button */
+.float-wa {
+  background: #9BB086 !important;   /* Muted pistachio green */
+  color: #3B2A22 !important;          /* Pure white text */
+  border-color: var(--border-color); /* Matches your new light borders */
+  transition: transform .25s var(--ease), background-color .25s;
+}
+
+/* Hover state effect */
+.float-wa:hover {
+  background: #8A9E75 !important;   /* Slightly darker pistachio on hover */
+  transform: translateY(-2px);
+}
