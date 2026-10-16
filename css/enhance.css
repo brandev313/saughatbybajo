@@ -3,7 +3,7 @@
    Remove the <link> to this file and the site returns to how it was. */
 
 :root{
-  --sp-o:.3;                       /* sprinkle opacity: raise/lower to taste */
+  --sp-o:.25;                       /* sprinkle opacity: raise/lower to taste */
   --s:clamp(30px,4.4vw,58px);      /* sprinkle size */
   --i-almond:url(../assets/bg/almond.webp);--i-cashew:url(../assets/bg/cashew.webp);
   --i-walnut:url(../assets/bg/walnut.webp);--i-pista:url(../assets/bg/pistachio.webp);
@@ -18,31 +18,15 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
 /* ---------- sprinkles: sit in each section's top/bottom padding, under all content ---------- */
 main>section{position:relative;overflow-x:clip}
 main>section>.wrap{position:relative;z-index:1}
-main>section::before,main>section::after{content:"";position:absolute;inset:0;z-index:0;pointer-events:none;
-  background-repeat:no-repeat;opacity:var(--sp-o)}
-main>section::before{background-size:var(--s) auto,calc(var(--s)*.85) auto,calc(var(--s)*1.1) auto,calc(var(--s)*.9) auto,calc(var(--s)*1.05) auto,calc(var(--s)*.8) auto}
-/* A */
-main>section:nth-child(4n+1)::before{background-image:var(--i-almond),var(--i-pista),var(--i-paratha),var(--i-spoon),var(--i-cashew),var(--i-walnut);
-  background-position:86% 8px,62% 6px,6% calc(100% - 8px),32% calc(100% - 8px),60% calc(100% - 8px),93% calc(100% - 8px)}
-/* B */
-main>section:nth-child(4n+2)::before{background-image:var(--i-makhana),var(--i-gond),var(--i-pump),var(--i-gheejar),var(--i-peanut),var(--i-melon);
-  background-position:10% 8px,50% 6px,90% 8px,18% calc(100% - 6px),68% calc(100% - 8px),95% calc(100% - 8px)}
-/* C */
-main>section:nth-child(4n+3)::before{background-image:var(--i-walnut),var(--i-spoon),var(--i-brown),var(--i-panjjar),var(--i-almond),var(--i-pista);
-  background-position:4% 8px,40% 6px,76% 8px,12% calc(100% - 6px),52% calc(100% - 8px),88% calc(100% - 8px)}
-/* D */
-main>section:nth-child(4n+4)::before{background-image:var(--i-cashew),var(--i-paratha),var(--i-pump),var(--i-melon),var(--i-gond),var(--i-makhana);
-  background-position:14% 8px,56% 6px,92% 8px,8% calc(100% - 8px),44% calc(100% - 8px),82% calc(100% - 8px)}
-/* the hero's text starts at the top-left, so keep its top sprinkles on the right */
-.hero::before{background-position:86% 6px,62% 4px,6% calc(100% - 8px),32% calc(100% - 8px),60% calc(100% - 8px),93% calc(100% - 8px)}
-/* tight sections hug their card, so sprinkles only show beside it on wide screens */
+main>section::before{content:"";position:absolute;inset:0;z-index:0;pointer-events:none;opacity:var(--sp-o);
+  background-repeat:no-repeat;background-size:var(--s) auto,calc(var(--s)*.9) auto}
+/* only two sprinkles per section, one near the top corner, one near the bottom corner */
+main>section:nth-child(4n+1)::before{background-image:var(--i-almond),var(--i-paratha);background-position:90% 8px,6% calc(100% - 8px)}
+main>section:nth-child(4n+2)::before{background-image:var(--i-gond),var(--i-gheejar);background-position:8% 8px,92% calc(100% - 8px)}
+main>section:nth-child(4n+3)::before{background-image:var(--i-spoon),var(--i-pista);background-position:92% 8px,8% calc(100% - 8px)}
+main>section:nth-child(4n+4)::before{background-image:var(--i-cashew),var(--i-pump);background-position:6% 8px,90% calc(100% - 8px)}
+/* tight sections hug their card, so no sprinkles there */
 .band.tight::before{display:none}
-/* wide screens: two extra sprinkles in the empty side margins */
-@media(min-width:1360px){
-  main>section::after{background-size:68px auto,60px auto;background-position:calc(50% - 650px) 38%,calc(50% + 650px) 62%}
-  main>section:nth-child(odd)::after{background-image:var(--i-almond),var(--i-spoon)}
-  main>section:nth-child(even)::after{background-image:var(--i-paratha),var(--i-pista)}
-}
 
 /* ---------- mobile polish ---------- */
 input,select,textarea{font-size:16px}               /* stops iOS zooming into fields */
