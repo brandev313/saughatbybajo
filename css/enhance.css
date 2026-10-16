@@ -1,0 +1,79 @@
+/* Saughat by Bajo - enhance.css
+   Loads AFTER styles.css. Adds (1) mobile polish and (2) faint food "sprinkles" behind content.
+   Remove the <link> to this file and the site returns to how it was. */
+
+:root{
+  --sp-o:.3;                       /* sprinkle opacity: raise/lower to taste */
+  --s:clamp(30px,4.4vw,58px);      /* sprinkle size */
+  --i-almond:url(../assets/bg/almond.webp);--i-cashew:url(../assets/bg/cashew.webp);
+  --i-walnut:url(../assets/bg/walnut.webp);--i-pista:url(../assets/bg/pistachio.webp);
+  --i-peanut:url(../assets/bg/peanut.webp);--i-makhana:url(../assets/bg/makhana.webp);
+  --i-melon:url(../assets/bg/melon-seeds.webp);--i-gond:url(../assets/bg/gond.webp);
+  --i-brown:url(../assets/bg/brown-seeds.webp);--i-pump:url(../assets/bg/pumpkin-seeds.webp);
+  --i-paratha:url(../assets/bg/paratha.webp);--i-spoon:url(../assets/bg/ghee-spoon.webp);
+  --i-gheejar:url(../assets/hero-3d-img/desi-ghee.png);--i-panjjar:url(../assets/hero-3d-img/panjeeri.png);
+}
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
+
+/* ---------- sprinkles: sit in each section's top/bottom padding, under all content ---------- */
+main>section{position:relative;overflow-x:clip}
+main>section>.wrap{position:relative;z-index:1}
+main>section::before,main>section::after{content:"";position:absolute;inset:0;z-index:0;pointer-events:none;
+  background-repeat:no-repeat;opacity:var(--sp-o)}
+main>section::before{background-size:var(--s) auto,calc(var(--s)*.85) auto,calc(var(--s)*1.1) auto,calc(var(--s)*.9) auto,calc(var(--s)*1.05) auto,calc(var(--s)*.8) auto}
+/* A */
+main>section:nth-child(4n+1)::before{background-image:var(--i-almond),var(--i-pista),var(--i-paratha),var(--i-spoon),var(--i-cashew),var(--i-walnut);
+  background-position:86% 8px,62% 6px,6% calc(100% - 8px),32% calc(100% - 8px),60% calc(100% - 8px),93% calc(100% - 8px)}
+/* B */
+main>section:nth-child(4n+2)::before{background-image:var(--i-makhana),var(--i-gond),var(--i-pump),var(--i-gheejar),var(--i-peanut),var(--i-melon);
+  background-position:10% 8px,50% 6px,90% 8px,18% calc(100% - 6px),68% calc(100% - 8px),95% calc(100% - 8px)}
+/* C */
+main>section:nth-child(4n+3)::before{background-image:var(--i-walnut),var(--i-spoon),var(--i-brown),var(--i-panjjar),var(--i-almond),var(--i-pista);
+  background-position:4% 8px,40% 6px,76% 8px,12% calc(100% - 6px),52% calc(100% - 8px),88% calc(100% - 8px)}
+/* D */
+main>section:nth-child(4n+4)::before{background-image:var(--i-cashew),var(--i-paratha),var(--i-pump),var(--i-melon),var(--i-gond),var(--i-makhana);
+  background-position:14% 8px,56% 6px,92% 8px,8% calc(100% - 8px),44% calc(100% - 8px),82% calc(100% - 8px)}
+/* the hero's text starts at the top-left, so keep its top sprinkles on the right */
+.hero::before{background-position:86% 6px,62% 4px,6% calc(100% - 8px),32% calc(100% - 8px),60% calc(100% - 8px),93% calc(100% - 8px)}
+/* tight sections hug their card, so sprinkles only show beside it on wide screens */
+.band.tight::before{display:none}
+/* wide screens: two extra sprinkles in the empty side margins */
+@media(min-width:1360px){
+  main>section::after{background-size:68px auto,60px auto;background-position:calc(50% - 650px) 38%,calc(50% + 650px) 62%}
+  main>section:nth-child(odd)::after{background-image:var(--i-almond),var(--i-spoon)}
+  main>section:nth-child(even)::after{background-image:var(--i-paratha),var(--i-pista)}
+}
+
+/* ---------- mobile polish ---------- */
+input,select,textarea{font-size:16px}               /* stops iOS zooming into fields */
+.btn{min-height:46px}
+.float-wa{right:max(14px,env(safe-area-inset-right));bottom:max(14px,env(safe-area-inset-bottom))}
+
+@media(max-width:900px){
+  .nav nav a:not(.btn){padding:8px 0;font-size:13px}
+  .panel-art{padding:28px 16px}
+  .panel-copy{padding:28px 22px 34px}
+  .split-l,.split-r{padding:30px 22px}
+  .ing{grid-template-columns:repeat(3,1fr);gap:10px}
+  .ing figure,.ing figure:last-child:nth-child(odd){flex-direction:column;gap:8px;padding:12px 8px;text-align:center;width:auto;grid-column:auto}
+  .ing img{width:100%;max-width:92px;height:auto;aspect-ratio:1}
+  .ing figcaption{font-size:13.5px;line-height:1.25}
+  .foot{padding-bottom:84px}                      /* clear of the floating WhatsApp button */
+}
+@media(max-width:600px){
+  .topbar{letter-spacing:.06em;font-size:10.5px;padding:8px 12px}
+  .brand{font-size:16px}.brand em{font-size:11px;letter-spacing:.1em}
+  .actions .btn{flex:1 1 100%;text-align:center}
+  .pill{font-size:10.5px;letter-spacing:.1em;padding:8px 13px}
+  .card{padding:24px}
+  .wa-card{width:min(300px,82vw)}
+  summary{font-size:16.5px;padding:18px 0}
+  .float-wa{padding:14px 20px}
+}
+@media(max-width:380px){
+  h1{font-size:31px}
+  .trust{grid-template-columns:1fr}
+  .steps li{padding:46px 18px 26px}
+  .ing{gap:8px}.ing figcaption{font-size:12.5px}
+  :root{--s:28px}
+}
